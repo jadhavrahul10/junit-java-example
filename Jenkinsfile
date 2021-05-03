@@ -35,4 +35,7 @@ pipeline {
     }
 
   }
+  environment {
+    mvn = 'D:\\apache\\apache-maven-3.8.1\\'
+  }
 }
