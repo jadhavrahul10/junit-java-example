@@ -6,15 +6,14 @@ pipeline {
         mvn = 'C:\\Program Files\\Git\\bin\\git.exe'
       }
       steps {
-        tool(name: 'mvn', type: 'maven')
+        tool(name: 'maven', type: 'maven3.8.1')
         git(url: 'https://github.com/jadhavrahul10/junit-java-example.git', branch: 'master')
-        tool(name: 'maven', type: 'mvn')
       }
     }
 
     stage('Clean') {
       steps {
-        bat 'mvn clean'
+        bat(script: 'mvn clean', label: 'mv')
       }
     }
 
