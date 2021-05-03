@@ -3,6 +3,7 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
+        tool(name: 'maven', type: 'mvn')
         git(url: 'https://github.com/jadhavrahul10/junit-java-example.git', branch: 'master')
       }
     }
