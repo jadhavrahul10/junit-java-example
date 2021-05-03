@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Checkout') {
       environment {
-        mvn = 'C:\\Program Files\\Git\\bin\\git.exe'
+        mvn = 'D:\\apache\\apache-maven-3.8.1\\'
       }
       steps {
         tool(name: 'mvn', type: 'maven3.8.1')
