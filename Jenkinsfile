@@ -39,6 +39,6 @@ pipeline {
 
   }
   environment {
-    mvn = 'D:\\apache\\apache-maven-3.8.1\\'
+    mvn = 'D:\\apache\\apache-maven-3.8.1\\bin\\mvn.exe'
   }
 }
