@@ -6,7 +6,7 @@ pipeline {
         mvn = 'C:\\Program Files\\Git\\bin\\git.exe'
       }
       steps {
-        tool(name: 'maven', type: 'mvn')
+        tool(name: 'mvn', type: 'maven')
         git(url: 'https://github.com/jadhavrahul10/junit-java-example.git', branch: 'master')
         tool(name: 'maven', type: 'mvn')
       }
