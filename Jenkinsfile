@@ -11,8 +11,12 @@ pipeline {
     }
 
     stage('Clean') {
+      agent any
+      environment {
+        mvn = 'D:\\apache\\apache-maven-3.8.1\\bin\\mvn.exe'
+      }
       steps {
-        bat(script: 'mvn clean', label: 'mv')
+        bat(script: 'mvn clean', label: 'mvn')
       }
     }
 
