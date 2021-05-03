@@ -16,7 +16,8 @@ pipeline {
         mvn = 'D:\\apache\\apache-maven-3.8.1\\bin\\mvn.exe'
       }
       steps {
-        bat(script: 'clean', label: 'mvn')
+        tool 'mvn'
+        bat(script: 'mvn clean', label: 'mvn')
       }
     }
 
