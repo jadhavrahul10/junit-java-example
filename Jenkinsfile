@@ -21,11 +21,17 @@ pipeline {
       }
     }
 
-    stage('Test') {
+    stage('Smoke Test') {
+      steps {
+        bat 'mvn test'
+      }
+    }
+
+    stage('Reports') {
       parallel {
-        stage('Smoke Test') {
+        stage('Reports') {
           steps {
-            bat 'mvn test'
+            junit '**/target/surefire-reports/TEST-*.xml'
           }
         }
 
@@ -35,12 +41,6 @@ pipeline {
           }
         }
 
-      }
-    }
-
-    stage('Reports') {
-      steps {
-        junit '**/target/surefire-reports/TEST-*.xml'
       }
     }
 
