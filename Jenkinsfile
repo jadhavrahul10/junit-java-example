@@ -27,20 +27,9 @@ pipeline {
       }
     }
 
-    stage('Reports') {
-      parallel {
-        stage('Reports') {
-          steps {
-            junit '**/target/surefire-reports/TEST-*.xml'
-          }
-        }
-
-        stage('Regression test') {
-          steps {
-            bat 'mvn test'
-          }
-        }
-
+    stage('Send Email') {
+      steps {
+        emailext(subject: 'Job success', body: 'success', from: 'jadhavrahul10@gmail.com', to: 'jadhavrahul10@gmail.com')
       }
     }
 
