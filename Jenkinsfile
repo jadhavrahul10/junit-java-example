@@ -23,15 +23,15 @@ pipeline {
 
     stage('Test') {
       parallel {
-        stage('Test') {
+        stage('Smoke Test') {
           steps {
             bat 'mvn test'
           }
         }
 
-        stage('Package') {
+        stage('Regression test') {
           steps {
-            bat 'mvn package'
+            bat 'mvn test'
           }
         }
 
