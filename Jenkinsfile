@@ -38,6 +38,12 @@ pipeline {
       }
     }
 
+    stage('Reports') {
+      steps {
+        junit '**/target/surefire-reports/TEST-*.xml'
+      }
+    }
+
   }
   environment {
     mvn = 'D:\\apache\\apache-maven-3.8.1\\bin\\mvn.exe'
