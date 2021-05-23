@@ -35,7 +35,7 @@ pipeline {
 
     stage('Sonar') {
       steps {
-        waitForQualityGate(credentialsId: '360c39e3bd4503db2e2574692df8147af2cf681e', abortPipeline: true)
+        waitForQualityGate(credentialsId: '360c39e3bd4503db2e2574692df8147af2cf681e', abortPipeline: true, webhookSecretId: 'http://10.168.140.149:8080/sonarqube-webhook/')
       }
     }
 
