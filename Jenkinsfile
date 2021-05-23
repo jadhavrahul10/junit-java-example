@@ -35,7 +35,7 @@ pipeline {
 
     stage('Sonar') {
       steps {
-        withSonarQubeEnv(credentialsId: '3Ajunitmavenexample', installationName: '360c39e3bd4503db2e2574692df8147af2cf681e')
+        waitForQualityGate(credentialsId: '360c39e3bd4503db2e2574692df8147af2cf681e', abortPipeline: true)
       }
     }
 
