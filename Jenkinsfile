@@ -23,7 +23,7 @@ pipeline {
 
     stage('Smoke Test') {
       steps {
-        bat 'mvn test'
+        bat 'mvn test package'
       }
     }
 
