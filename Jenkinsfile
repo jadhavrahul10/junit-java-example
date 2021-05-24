@@ -38,6 +38,11 @@ pipeline {
         bat 'mvn sonar:sonar -Dsonar.login=360c39e3bd4503db2e2574692df8147af2cf681e'
       }
     }
+    stage('Upload jar') {
+      steps {
+        nexusArtifactUploader artifacts: [[artifactId: 'junitmavenexample', classifier: '', file: 'target/junitmavenexample-1.0-SNAPSHOT.jar', type: 'jar']], credentialsId: 'jenkinsNexus', groupId: 'com.mycompany.app', nexusUrl: '10.168.140.149:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'jenkin-nexus-storage', version: '4.0.0'
+      }
+    }
 
   }
   environment {
