@@ -24,7 +24,7 @@ pipeline {
         {
             parallel
             {
-                stage("")
+                stage("1")
                 {
                     stages
                     {
@@ -51,7 +51,7 @@ pipeline {
                         }
                     }
                 }
-                stage("")
+                stage("2")
                 {
                     stages
                     {
