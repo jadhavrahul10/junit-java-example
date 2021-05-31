@@ -32,7 +32,11 @@ pipeline {
                             stage("QA")
                             {
                                 when {
-                                    expression { params.environment == "qa"}
+                                    anyOf{
+
+                                     expression { params.environment == "qa"}
+                                     expression { params.environment == "both"}
+                                  }
                                 }
                                 steps
                                 {
@@ -48,7 +52,11 @@ pipeline {
                             stage("STAGE")
                             {
                             when {
-                                expression { params.environment == "stage"}
+                                anyOf{
+
+                                     expression { params.environment == "stage"}
+                                     expression { params.environment == "both"}
+                                  }
                             }
                                 steps
                                 {
