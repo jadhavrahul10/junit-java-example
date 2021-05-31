@@ -36,12 +36,7 @@ pipeline {
                                                 println "It's doing something on QA"
                                             }
                                         }
-                                        when {
-                                                    anyOf{
-                                                            expression { params.environment == "stage"}
-                                                            expression { params.environment == "both"}
-                                                        }
-                                             }
+                                        
                                         stage('STAGE'){
                                             steps {
                                                 println "It's doing something on Stage"
