@@ -41,9 +41,6 @@ pipeline {
                             {
                                println "It's doing something on QA"
                             }
-                        }
-                        stage("sending QA Email")
-                        {
                             steps
                             {
                                println "QA email sending"
@@ -68,14 +65,12 @@ pipeline {
                             {
                                println "It's doing something on stage"
                             }
-                        }
-                        stage("sending STAGE Email")
-                        {
                             steps
                             {
                                println "Stage email sending"
                             }
                         }
+                        
                     }
                 }
             }
