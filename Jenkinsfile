@@ -28,11 +28,12 @@ pipeline {
                     {
                         stages
                         {
-                             when {
-                                expression { params.environment == "qa"}
-                            }
+
                             stage("QA")
                             {
+                                when {
+                                    expression { params.environment == "qa"}
+                                }
                                 steps
                                 {
                                    println "It's doing something on QA"
@@ -44,11 +45,11 @@ pipeline {
                     {
                         stages
                         {
-                             when {
-                                expression { params.environment == "stage"}
-                            }
                             stage("STAGE")
                             {
+                            when {
+                                expression { params.environment == "stage"}
+                            }
                                 steps
                                 {
                                    println "It's doing something on stage"
