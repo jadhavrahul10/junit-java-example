@@ -23,32 +23,31 @@ pipeline {
         stage('Build and Execute parallel')
         {
 
-                             when {
-                                    expression { params.environment == "both"}
-                             }
+                             
                                 parallel{
+                                        when {
+                                                    anyOf{
+                                                            expression { params.environment == "qa"}
+                                                            expression { params.environment == "both"}
+                                                        }
+                                             }
                                         stage('QA'){
                                             steps {
                                                 println "It's doing something on QA"
                                             }
                                         }
+                                        when {
+                                                    anyOf{
+                                                            expression { params.environment == "stage"}
+                                                            expression { params.environment == "both"}
+                                                        }
+                                             }
                                         stage('STAGE'){
                                             steps {
                                                 println "It's doing something on Stage"
                                             }
                                         }
                                 }
-                                when {
-                                        anyOf{
-                                            expression { params.environment == "qa"}
-                                            expression { params.environment == "stage"}
-                                        }
-                                    }
-                                    stage('STAGE'){
-                                        steps {
-                                            println "It's instaling 2"+params.environment
-                                        }
-                                    }
         }
     }
  }
