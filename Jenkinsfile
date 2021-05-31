@@ -16,42 +16,38 @@ pipeline {
 
         stage('Check out'){
             steps {
-                git branch: params.BranchName, credentialsId: 'sdc', url: 'https://globalrepository.mclocal.int/stash/scm/va/service-cloud.git'
+                println "git checkoutA"
             }
         }
 
-        stage('Build and Execute parallel'){
+        stage('Build and Execute parallel')
+        {
 
-         when {
-                                expression { params.environment == "both"}
-               }
-            parallel{
-
-                    stage('QA'){
-                        steps {
-                            println "It's doing something on QA"
-                        }
-                    }
-                    stage('STAGE'){
-                        steps {
-                            println "It's doing something on Stage"
-                        }
-                    }
-
-            }
-            when {
-                    anyOf{
-                        expression { params.environment == "qa"}
-                        expression { params.environment == "stage"}
-                    }
-                }
-                stage('STAGE'){
-                    steps {
-                        println "It's instaling 2"+params.environment
-                    }
-                }
+                             when {
+                                    expression { params.environment == "both"}
+                             }
+                                parallel{
+                                        stage('QA'){
+                                            steps {
+                                                println "It's doing something on QA"
+                                            }
+                                        }
+                                        stage('STAGE'){
+                                            steps {
+                                                println "It's doing something on Stage"
+                                            }
+                                        }
+                                }
+                                when {
+                                        anyOf{
+                                            expression { params.environment == "qa"}
+                                            expression { params.environment == "stage"}
+                                        }
+                                    }
+                                    stage('STAGE'){
+                                        steps {
+                                            println "It's instaling 2"+params.environment
+                                        }
+                                    }
         }
-
-        }
-    }
-}
+ }
