@@ -22,27 +22,32 @@ pipeline {
 
         stage('Build and Execute parallel')
         {
+            parallel
+            {
+                when
+                {
+                        expression { params.environment == "qa"}
+                }
+                stage('QA')
+                {
+                    steps
+                    {
+                        println "It's doing something on QA"
+                    }
+                }
 
-                             
-                                parallel{
-                                        when {
-                                                    anyOf{
-                                                            expression { params.environment == "qa"}
-                                                            expression { params.environment == "both"}
-                                                        }
-                                             }
-                                        stage('QA'){
-                                            steps {
-                                                println "It's doing something on QA"
-                                            }
-                                        }
-                                        
-                                        stage('STAGE'){
-                                            steps {
-                                                println "It's doing something on Stage"
-                                            }
-                                        }
-                                }
+                when
+                {
+                        expression { params.environment == "qa"}
+                }
+                stage('STAGE')
+                {
+                    steps
+                    {
+                        println "It's doing something on Stage"
+                    }
+                }
+            }
         }
     }
  }
