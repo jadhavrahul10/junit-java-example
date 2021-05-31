@@ -41,6 +41,16 @@ pipeline {
                             {
                                println "It's doing something on QA"
                             }
+                        }
+                        stage("sending QA Email")
+                        {
+                            when {
+                                anyOf{
+
+                                         expression { params.environment == "qa"}
+                                         expression { params.environment == "both"}
+                                      }
+                            }
                             steps
                             {
                                println "QA email sending"
@@ -65,12 +75,21 @@ pipeline {
                             {
                                println "It's doing something on stage"
                             }
+                        }
+                        stage("sending STAGE Email")
+                        {
+                            when {
+                                anyOf{
+
+                                         expression { params.environment == "stage"}
+                                         expression { params.environment == "both"}
+                                      }
+                            }
                             steps
                             {
                                println "Stage email sending"
                             }
                         }
-                        
                     }
                 }
             }
