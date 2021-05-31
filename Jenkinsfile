@@ -24,47 +24,60 @@ pipeline {
         {
             parallel
             {
-                    stage("windows")
+                stage("QA execution")
+                {
+                    stages
                     {
-                        stages
+                        stage("QA")
                         {
-
-                            stage("QA")
-                            {
-                                when {
-                                    anyOf{
-
-                                     expression { params.environment == "qa"}
-                                     expression { params.environment == "both"}
-                                  }
-                                }
-                                steps
-                                {
-                                   println "It's doing something on QA"
-                                }
-                            }
-                        }
-                    }
-                    stage("Linux")
-                    {
-                        stages
-                        {
-                            stage("STAGE")
-                            {
                             when {
                                 anyOf{
 
-                                     expression { params.environment == "stage"}
-                                     expression { params.environment == "both"}
-                                  }
+                                         expression { params.environment == "qa"}
+                                         expression { params.environment == "both"}
+                                      }
                             }
-                                steps
-                                {
-                                   println "It's doing something on stage"
-                                }
+                            steps
+                            {
+                               println "It's doing something on QA"
+                            }
+                        }
+                        stage("sending QA Email")
+                        {
+                            steps
+                            {
+                               println "QA email sending"
                             }
                         }
                     }
+                }
+                stage("STAGE execution")
+                {
+                    stages
+                    {
+                        stage("STAGE")
+                        {
+                            when {
+                                anyOf{
+
+                                         expression { params.environment == "stage"}
+                                         expression { params.environment == "both"}
+                                      }
+                            }
+                            steps
+                            {
+                               println "It's doing something on stage"
+                            }
+                        }
+                        stage("sending QA Email")
+                        {
+                            steps
+                            {
+                               println "Stage email sending"
+                            }
+                        }
+                    }
+                }
             }
         }
     }
