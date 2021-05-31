@@ -24,29 +24,38 @@ pipeline {
         {
             parallel
             {
-                when
-                {
-                        expression { params.environment == "qa"}
-                }
-                stage('QA')
-                {
-                    steps
+                    stage("windows")
                     {
-                        println "It's doing something on QA"
+                        stages
+                        {
+                             when {
+                                expression { params.environment == "qa"}
+                            }
+                            stage("QA")
+                            {
+                                steps
+                                {
+                                   println "It's doing something on QA"
+                                }
+                            }
+                        }
                     }
-                }
-
-                when
-                {
-                        expression { params.environment == "qa"}
-                }
-                stage('STAGE')
-                {
-                    steps
+                    stage("Linux")
                     {
-                        println "It's doing something on Stage"
+                        stages
+                        {
+                             when {
+                                expression { params.environment == "stage"}
+                            }
+                            stage("STAGE")
+                            {
+                                steps
+                                {
+                                   println "It's doing something on stage"
+                                }
+                            }
+                        }
                     }
-                }
             }
         }
     }
