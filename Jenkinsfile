@@ -24,7 +24,7 @@ pipeline {
         {
             parallel
             {
-                stage("QA execution")
+                stage("")
                 {
                     stages
                     {
@@ -51,7 +51,7 @@ pipeline {
                         }
                     }
                 }
-                stage("STAGE execution")
+                stage("")
                 {
                     stages
                     {
@@ -69,7 +69,7 @@ pipeline {
                                println "It's doing something on stage"
                             }
                         }
-                        stage("sending QA Email")
+                        stage("sending STAGE Email")
                         {
                             steps
                             {
